@@ -21,26 +21,26 @@ saveBtn.addEventListener("click", () => {
     const desc = document.getElementById("taskDesc").value.trim();
     if (!title) return;
 
-    if(numberEdit){
+    if(numberEdit !== null){
         let editTask = tasks.find(it => it.id === numberEdit);
         editTask.title = title;
         editTask.description = desc;
 
-        let div = document.getElementById(`${editTask.id}`);
+        let div = document.querySelector(`[data-id='${editTask.id}']`);
         div.querySelector("strong").innerText = editTask.title;
-        div.querySelector("small").innerText = editTask.description;
-
+        numberEdit = null;
     }
-
-    let newTask = {
+    else{
+        let newTask = {
         id: counterTasks++,
         title: title,
         description: desc,
         done: false
+        };
+        tasks.push(newTask);
+        addTaskInList(newTask);
     }
-
-    tasks.push(newTask);
-    addTaskInList(newTask);
+    
     document.getElementById("alert").style.display = "none";
 });
 
@@ -50,10 +50,9 @@ function addTaskInList(task){
     div.dataset.id = task.id;
     div.innerHTML = `
         <input type="checkbox" ${task.done ? "checked" : ""}>
-        <strong>${task.title}</strong><br>
-        <small>${task.description}</small><br>
-        <button class="editBtn">Open</button>
-        <button class="deleteBtn">Del</button>
+        <strong>${task.title}</strong>
+        <button class="editBtn btn">Open</button>
+        <button class="deleteBtn btn">Delete</button>
     `;
     
     div.querySelector("input").addEventListener("change", e => {
@@ -63,7 +62,11 @@ function addTaskInList(task){
 
 
     div.querySelector(".editBtn").addEventListener("click", () => {
-        
+        numberEdit = task.id;
+        document.getElementById("nameAlert").textContent = "Edit";
+        document.getElementById("taskTitle").value = task.title;
+        document.getElementById("taskDesc").value = task.description;
+        document.getElementById("alert").style.display = "flex";
     });
 
     div.querySelector(".deleteBtn").addEventListener("click", () => {
