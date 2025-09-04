@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>To-Do List</title>
-    <link rel="stylesheet" type="text/css" href="st.css">
+    <link rel="stylesheet" href="st.css">
 </head>
 <body>
+    <h1>List</h1>
+    <div class="wrapper">
+        <div id="listDoing"></div>
+        <button id="addTask">Add</button>
+    </div>
 
+
+    <div id="alert" class="hidden">
+        <div class="alertContent">
+            <h2 id="nameAlert">New</h2>
+            <label>
+                Named: <input type="text" id="taskTitle">
+            </label><br>
+            <label>Description: </label>
+            <textarea id="taskDesc"></textarea>
+
+            <button id="saveTask" class="addBtn">Сохранить</button>
+            <button id="cancelTask" class="addBtn">Отмена</button>
+        </div>
+    </div>
+
+
+    <!-- <div id="alert">
+        <div class="alertContent">
+            <h2>Edit</h2>
+            <label>
+                Named: <input type="text" id="taskTitle">
+            </label><br>
+            <label>
+                Description: <textarea id="taskDesc"></textarea>
+            </label><br>
+            <button id="saveTask" class="editBtn">Сохранить</button>
+            <button id="cancelTask" class="editBtn">Отмена</button>
+        </div>
+    </div> -->
+
+<script src="hh.js"></script>
 </body>
 </html>
