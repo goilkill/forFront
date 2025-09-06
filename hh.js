@@ -1,9 +1,40 @@
 const addBtn = document.getElementById("addTask");
 const saveBtn = document.getElementById("saveTask");
 const cancelBtn = document.getElementById("cancelTask");
+const saveJsonBnt = document.getElementById("saveJson");
+const openJsonBtn = document.getElementById("openJson");
 let tasks = [];
-let counterTasks = 0;
 let numberEdit = null;
+
+
+saveJsonBnt.addEventListener("click", () => {
+    const js = JSON.stringify(task, null, 2)
+    localStorage.setItem("tasks", js)
+    alert("Saved!!")
+})
+
+openJsonBtn.addEventListener("click", ()=>{
+    const saved = localStorage.getItem("tasks");
+    if (!saved){alert("Don`t have any saved storadge!!!"); return;}
+    tasks = JSON.parse(saved);
+
+    returnTask()
+})
+
+
+function returnTask(){
+    document.getElementById("listDoing").innerHTML = "";
+    tasks.forEach(task => {
+        let div = document.createElement("div");
+        div.innerHTML = `
+        <input type="checkbox" ${task.done ? "checked" : ""}>
+        <strong>${task.title}</strong>
+        <button class="editBtn btn">Open</button>
+        <button class="deleteBtn btn">Delete</button>
+        `;
+        document.getElementById("listDoing").appendChild(div);
+    })
+}
 
 addBtn.addEventListener("click", () => {
     document.getElementById("alert").style.display = "flex";
@@ -23,6 +54,10 @@ saveBtn.addEventListener("click", () => {
 
     if(numberEdit !== null){
         let editTask = tasks.find(it => it.id === numberEdit);
+        if (!editTask) {
+            console.error("Задача для редактирования не найдена");
+            return;
+        }
         editTask.title = title;
         editTask.description = desc;
 
@@ -32,7 +67,7 @@ saveBtn.addEventListener("click", () => {
     }
     else{
         let newTask = {
-        id: counterTasks++,
+        id: crypto.randomUUID(),
         title: title,
         description: desc,
         done: false
