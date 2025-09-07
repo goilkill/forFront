@@ -9,15 +9,6 @@ h1{
     font-size: 50px;
 }
 
-#json{
-    font-size: 20px;
-    background-color: rgb(102, 168, 141);
-    border: 1px solid wheat;
-    border-radius: 30px;
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-}
 #addTask {
     font-size: 30px;
     background-color: rgb(102, 168, 141);
@@ -48,6 +39,13 @@ h1{
     padding: 10px;
     margin-top: 10px;
     background-color: wheat;
+}
+
+.topButtons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  justify-content: center;
 }
 
 #listDoing{
@@ -126,6 +124,9 @@ textarea {
     margin: 10px;
     border-radius: 10px;
     background: rgb(102, 168, 141);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .btn{
@@ -154,4 +155,10 @@ input[type="checkbox"] {
 
 input[type="checkbox"]:checked {
   background-color: wheat;
+}
+
+.taskInfo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }

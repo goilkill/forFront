@@ -77,10 +77,14 @@ function addTaskInList(task){
     div.className = "taskItem";
     div.id = task.id;
     div.innerHTML = `
+    <div class="taskInfo">
         <input type="checkbox" ${task.done ? "checked" : ""}>
         <strong>${task.title}</strong>
+    </div>
+    <div class="taskButtons">
         <button class="editBtn btn">Open</button>
         <button class="deleteBtn btn">Delete</button>
+    </div>
     `;
     
     div.querySelector("input").addEventListener("change", e => {
