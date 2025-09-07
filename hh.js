@@ -8,14 +8,14 @@ let numberEdit = null;
 
 
 saveJsonBnt.addEventListener("click", () => {
-    const js = JSON.stringify(task, null, 2)
+    const js = JSON.stringify(tasks, null, 2)
     localStorage.setItem("tasks", js)
     alert("Saved!!")
 })
 
 openJsonBtn.addEventListener("click", ()=>{
     const saved = localStorage.getItem("tasks");
-    if (!saved){alert("Don`t have any saved storadge!!!"); return;}
+    if (!saved || saved == "[]"){alert("Don`t have any saved storadge!!!"); return;}
     tasks = JSON.parse(saved);
 
     returnTask()
@@ -25,14 +25,7 @@ openJsonBtn.addEventListener("click", ()=>{
 function returnTask(){
     document.getElementById("listDoing").innerHTML = "";
     tasks.forEach(task => {
-        let div = document.createElement("div");
-        div.innerHTML = `
-        <input type="checkbox" ${task.done ? "checked" : ""}>
-        <strong>${task.title}</strong>
-        <button class="editBtn btn">Open</button>
-        <button class="deleteBtn btn">Delete</button>
-        `;
-        document.getElementById("listDoing").appendChild(div);
+        addTaskInList(task);
     })
 }
 
@@ -82,7 +75,7 @@ saveBtn.addEventListener("click", () => {
 function addTaskInList(task){
     let div = document.createElement("div");
     div.className = "taskItem";
-    div.dataset.id = task.id;
+    div.id = task.id;
     div.innerHTML = `
         <input type="checkbox" ${task.done ? "checked" : ""}>
         <strong>${task.title}</strong>

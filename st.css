@@ -28,7 +28,17 @@ h1{
     cursor: pointer;
 }
 
-#addTask:hover, #json:hover {
+#saveJson, #openJson{
+    font-size: 20px;
+    background-color: rgb(102, 168, 141);
+    border: 1px solid wheat;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#addTask:hover, #saveJson:hover, #openJson:hover {
     background-color: rgb(85, 136, 113);
 }
 
