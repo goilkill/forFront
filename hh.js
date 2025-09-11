@@ -75,7 +75,7 @@ saveBtn.addEventListener("click", () => {
 function addTaskInList(task){
     let div = document.createElement("div");
     div.className = "taskItem";
-    div.id = task.id;
+    div.dataset.id = task.id;
     div.innerHTML = `
     <div class="taskInfo">
         <input type="checkbox" ${task.done ? "checked" : ""}>
